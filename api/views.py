@@ -54,7 +54,7 @@ def run_assessment(query, response_key):
     
    
     
-    embeddings = OpenAIEmbeddings(api_key="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",model="text-embedding-3-small",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
+    embeddings = OpenAIEmbeddings(api_key=os.getenv('OPENAI_API_KEY'),model="text-embedding-3-small",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
 
     retrieved_docs = new_db.similarity_search(query)
@@ -84,7 +84,7 @@ def run_assessment(query, response_key):
     
     """
 
-    llm = ChatOpenAI(api_key="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",model="gpt-3.5-turbo",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
+    llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'),model="gpt-3.5-turbo",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
     raw_output = llm.invoke(prompt).content
     cleaned = re.sub(r"```(?:json)?", "", raw_output).strip()
     parsed = json.loads(cleaned)
@@ -112,7 +112,7 @@ def process_pdfs(request):
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size = 10000, chunk_overlap = 1000)
     chunks = text_splitter.split_text(text)
-    embeddings = OpenAIEmbeddings(api_key="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",model="text-embedding-3-small",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
+    embeddings = OpenAIEmbeddings(api_key=os.getenv('OPENAI_API_KEY'),model="text-embedding-3-small",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
     vector_store = FAISS.from_texts(chunks, embedding=embeddings)
     vector_store.save_local("faiss_index")
     return JsonResponse({"message": "Success!"})
@@ -121,7 +121,7 @@ def process_pdfs(request):
 
 @csrf_exempt
 def generate_questions(request):
-    embeddings = OpenAIEmbeddings(api_key="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",model="text-embedding-3-small",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
+    embeddings = OpenAIEmbeddings(api_key=os.getenv('OPENAI_API_KEY'),model="text-embedding-3-small",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
     new_db = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
     retrieved_docs = new_db.similarity_search("Candidates resume and the Job description")
     context = "\n\n".join([
@@ -143,7 +143,7 @@ def generate_questions(request):
         }}
         For 5 questions with key(questions) and values(answers) both being strings.  Answers should be from the point of view of you answering these questions yourself.
     """
-    llm = ChatOpenAI(api_key="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",model="gpt-3.5-turbo",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
+    llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'),model="gpt-3.5-turbo",organization="org-c2Ov83W6Qry8QAkIjwGMgxPI")
     raw_output = llm.invoke(prompt).content
     cleaned = re.sub(r"```(?:json)?", "", raw_output).strip()
     parsed = json.loads(cleaned)
