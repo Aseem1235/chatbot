@@ -4,14 +4,28 @@ djangorestframework==3.16.0
 djangorestframework_simplejwt==5.5.0
 django-cors-headers==4.7.0
 
-# OpenAI
+# OpenAI + Langchain
 openai==1.92.2
+langchain==0.2.3
+langchain-openai==0.1.7
+langchain-community==0.2.3
 
-# Env config (if you're using .env files for secrets)
+# PDF Handling
+PyPDF2==3.0.1
+
+# Environment Variables
 python-dotenv==1.1.1
+
+# Audio Handling
+pydub==0.25.1
+SpeechRecognition==3.10.1
+
+# Vector DB
+faiss-cpu==1.8.0
 
 # MySQL (if you're using MySQL)
 mysqlclient==2.2.7
 
-# Optional: If using PyJWT manually (not needed if only using SimpleJWT)
+# Optional: If using PyJWT manually
 PyJWT==2.9.0
+
