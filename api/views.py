@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import yrsExperience, LoginDetails,Recruiter,RecruiterArch,UsageDetails,TechInMenu,SkillsInMenu,Domain,Level,AI_Model
 import json
-from langchain_google_genai import ChatGoogleGenerativeAI
+
 from langchain.prompts import PromptTemplate
 from langchain.chains.combine_documents import create_stuff_documents_chain
 import datetime
@@ -16,7 +16,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 from io import BytesIO
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-import google.generativeai as genai
+
 from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
 import speech_recognition as sr
