@@ -28,4 +28,4 @@ mysqlclient==2.2.7
 
 # Optional: If using PyJWT manually
 PyJWT==2.9.0
-
+gunicorn==21.2.0
